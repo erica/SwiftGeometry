@@ -8,6 +8,8 @@
 import Foundation
 import QuartzCore
 
+infix operator **
+
 // Vectors
 extension CGVector {
     /// Returns magnitude
@@ -25,14 +27,24 @@ extension CGVector {
         return CGVector(dx: -dx, dy: -dy)
     }
 
+    /// Multiplies vector by factor
+    public static func * (vector: CGVector, factor: CGFloat) -> CGVector {
+        return CGVector(dx: vector.dx * factor, dy: vector.dy * factor)
+    }
+    
     /// Multiplies vector by scale
-    public static func * (vector: CGVector, scale: CGFloat) -> CGVector {
-        return CGVector(dx: vector.dx * scale, dy: vector.dy * scale)
+    public static func * (vector: CGVector, scale: CGScale) -> CGVector {
+        return CGVector(dx: vector.dx * scale.sx, dy: vector.dy * scale.sy)
+    }
+    
+    /// Divides vector by factor
+    public static func / (vector: CGVector, factor: CGFloat) -> CGVector {
+        return CGVector(dx: vector.dx / factor, dy: vector.dy / factor)
     }
     
     /// Divides vector by scale
-    public static func / (vector: CGVector, scale: CGFloat) -> CGVector {
-        return CGVector(dx: vector.dx / scale, dy: vector.dy / scale)
+    public static func / (vector: CGVector, scale: CGScale) -> CGVector {
+        return CGVector(dx: vector.dx / scale.sy, dy: vector.dy / scale.sx)
     }
     
     /// Adds two vectors
@@ -51,22 +63,13 @@ extension CGVector {
     }
     
     /// Returns dot product of two vectors
-    public static func * (lhs: CGVector, rhs: CGVector) -> CGFloat {
-        let dot: CGFloat = (lhs.dx * rhs.dx) + (lhs.dy * rhs.dy)
+    public static func * (v1: CGVector, v2: CGVector) -> CGFloat {
+        let dot: CGFloat = (v1.dx * v2.dx) + (v1.dy * v2.dy)
         return dot
-    }
-}
-
-infix operator **
-
-extension CGVector {
-    /// Returns unnormalized dot product of two vectors
-    public static func dotProduct (_ v1: CGVector, _ v2: CGVector) -> CGFloat {
-        return (v1.dx * v2.dx) + (v1.dy * v2.dy)
     }
 
     /// Returns unit dot product of two vectors
     public static func ** (v1: CGVector, v2: CGVector) -> CGFloat {
-        return dotProduct(v1, v2) / (v1.magnitude * v2.magnitude)
+        return (v1 * v2) / (v1.magnitude * v2.magnitude)
     }
 }
