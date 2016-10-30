@@ -52,6 +52,11 @@ extension CGAffineTransform {
     public var piCount: CGFloat {
         return radians / CGFloat(Double.pi)
     }
+    
+    /// The transform's scale as angle
+    public var angle: CGAngle {
+        return CGAngle(radians: radians)
+    }
 }
 
 /// Vend flips
