@@ -18,6 +18,16 @@ import QuartzCore
 
 /// Exposing core properties
 extension CGAffineTransform {
+    /// The transform's translation as an (dx, dy) pair
+    public var translation: CGVector {
+        return CGVector(dx: tx, dy: ty)
+    }
+    
+    /// The transform's scale as an (sx, sy) pair
+    public var scale: CGScale {
+        return CGScale(sx: sx, sy: sy)
+    }
+
     /// The transform's scale along the x axis
     public var sx: CGFloat {
         return sqrt(a * a + c * c)
@@ -26,11 +36,6 @@ extension CGAffineTransform {
     /// The transform's scale along the y axis
     public var sy: CGFloat {
         return sqrt(b * b + d * d)
-    }
-    
-    /// The transform's scale as an (sx, sy) pair
-    public var scale: CGScale {
-        return CGScale(sx: sx, sy: sy)
     }
     
     /// The transform's scale in radians
@@ -52,15 +57,11 @@ extension CGAffineTransform {
 /// Vend flips
 extension CGAffineTransform {
 
-    /// Flip vertically
-    public static func flip(height: CGFloat) -> CGAffineTransform {
-        return CGAffineTransform(a: 1.0, b: 0.0, c: 0.0, d: -1.0, tx: 0.0, ty: -height)
-    }
-    
-    /// Flip horizontally
-    public static func flip(width: CGFloat) -> CGAffineTransform {
-        return CGAffineTransform(a: -1.0, b: 0.0, c: 0.0, d: 1.0, tx: -width, ty: 0.0)
-    }
+    /// Vertical flip
+    public static var vflip = CGAffineTransform(scaleX: 1, y: -1)
+
+    /// Horizontal flip
+    public static var hflip = CGAffineTransform(scaleX: -1, y: 1)
 }
 
 // Translation Initializers
