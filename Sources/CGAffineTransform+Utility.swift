@@ -162,7 +162,6 @@ extension CGAffineTransform {
 }
 
 // Scaling
-// No scaling by points
 extension CGAffineTransform {
     /// Scaling by (sx, sy), which is what `scaledBy(x:,y:)` should be
     public func scaledBy(sx: CGFloat, sy: CGFloat) -> CGAffineTransform {

@@ -38,6 +38,16 @@ extension CGRect {
     public var bottomRight: CGPoint { return CGPoint(x: maxX, y: maxY) }
 }
 
+// Rectangle Properties
+
+extension CGRect {
+    /// Return rectangle's area
+    public var area: CGFloat { return width * height }
+    
+    /// Return rectangle's diagonal extent
+    public var diagonalExtent: CGFloat { return hypot(width, height) }
+}
+
 // Moving Rects
 extension CGRect {
     
@@ -94,42 +104,3 @@ extension CGRect {
         return CGRect.around(destination.center, size: targetSize)
     }
 }
-
-// Rect math
-
-/// Offset rectangle by vector
-public func + (rect: CGRect, vector: CGVector) -> CGRect {
-    return rect.offsetBy(dx: vector.dx, dy: vector.dy)
-}
-
-/// Offset rectangle by -vector
-public func - (rect: CGRect, vector: CGVector) -> CGRect {
-    return rect.offsetBy(dx: -vector.dx, dy: -vector.dy)
-}
-
-/// Add size to rectangle
-public func + (rect: CGRect, size: CGSize) -> CGRect {
-    return CGRect(origin: rect.origin, size: rect.size + size)
-}
-
-/// Scale rectangle size by scale factor
-public func * (rect: CGRect, factor: CGFloat) -> CGRect {
-    return CGRect(origin: rect.origin, size: (rect.size * factor))
-}
-
-/// Scale rectangle size by scale
-public func * (rect: CGRect, scale: CGScale) -> CGRect {
-    return CGRect(origin: rect.origin, size: (rect.size * scale))
-}
-
-// Rectangle Properties
-
-extension CGRect {
-    /// Return rectangle's area
-    public var area: CGFloat { return width * height }
-    
-    /// Return rectangle's diagonal extent
-    public var diagonalExtent: CGFloat { return hypot(width, height) }
-}
-
-

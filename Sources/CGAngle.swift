@@ -20,9 +20,6 @@ public struct CGAngle: CustomStringConvertible {
     /// Init
     public init() { _radians = 0 }
     
-    /// Initialize implicitly with radians
-    public init(_ radians: CGFloat) { _radians = radians }
-    
     /// Initialize with radians
     public init(radians: CGFloat) { _radians = radians }
     
