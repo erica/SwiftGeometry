@@ -198,3 +198,17 @@ extension CGAffineTransform {
     }
 }
 
+// Equality
+//
+// It would be easy to extend this to == vector, == scale, and == angle
+// but I don't see a compelling utility so have omitted them at this time
+//
+extension CGAffineTransform {
+    // Basic comparison. This is otherwise available via
+    //    `public func __equalTo(_ t2: CGAffineTransform) -> Bool`
+    public static func == (lhs: CGAffineTransform, rhs: CGAffineTransform) -> Bool {
+        return lhs.a == rhs.a && lhs.b == rhs.b &&
+        lhs.c == rhs.c && lhs.d == rhs.d &&
+        lhs.tx == rhs.tx && lhs.ty == rhs.ty
+    }
+}

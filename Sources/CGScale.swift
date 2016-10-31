@@ -18,6 +18,9 @@ public struct CGScale {
     /// Returns default scale ratios of 1:1
     public init() { self.init(sx: 1, sy: 1) }
     
+    /// The CGScale version of .zero
+    public var one: CGScale { return CGScale() }
+
     /// Initialize with caller-supplied values
     public init(sx: CGFloat, sy: CGFloat) {
         (self.sx, self.sy) = (sx, sy)
@@ -27,7 +30,4 @@ public struct CGScale {
     public init(factor: CGFloat) {
         (self.sx, self.sy) = (factor, factor)
     }
-    
-    /// The CGScale version of .zero
-    public var one: CGScale { return CGScale() }
 }
