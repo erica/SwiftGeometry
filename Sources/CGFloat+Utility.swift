@@ -23,6 +23,23 @@ extension CGFloat {
     }
 }
 
+// Sign
+extension CGFloat {
+    /// Signs
+    public enum Sign { case negative, zero, positive }
+    
+    /// Returns sign of value
+    public var sign: Sign { return self == 0.0 ? .zero : ((self < 0) ? .negative : .positive) }
+}
+
+// Modulo
+extension CGFloat {
+    /// Returns modulo
+    static func % (dividend: CGFloat, divisor: CGFloat) -> CGFloat {
+        return CGFloat(fmod(Double(dividend), Double(divisor)))
+    }
+}
+
 // Custom Core Graphics Angle Utilities for CGFloat
 extension CGFloat {
     
