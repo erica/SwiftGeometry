@@ -10,32 +10,94 @@ import QuartzCore
 
 // Rectangle Positions
 extension CGRect {
-    /// Returns top left corner
-    public var topLeft: CGPoint { return origin }
+    /// Sets and returns top left corner
+    public var topLeft: CGPoint {
+        get { return origin }
+        set { origin = newValue }
+    }
     
-    /// Returns top center point
-    public var topCenter: CGPoint { return CGPoint(x: midX, y: minY) }
+    /// Sets and returns top center point
+    public var topCenter: CGPoint {
+        get { return CGPoint(x: midX, y: minY) }
+        set { origin = CGPoint(x: newValue.x - width / 2,
+                               y: newValue.y) }
+    }
     
     /// Returns top right corner
-    public var topRight: CGPoint { return CGPoint(x: maxX, y: minY) }
+    public var topRight: CGPoint {
+        get { return CGPoint(x: maxX, y: minY) }
+        set { origin = CGPoint(x: newValue.x - width,
+                               y: newValue.y) }
+    }
     
     /// Returns center left point
-    public var centerLeft: CGPoint { return CGPoint(x: minX, y: midY) }
+    public var centerLeft: CGPoint {
+        get { return CGPoint(x: minX, y: midY) }
+        set { origin = CGPoint(x: newValue.x,
+                               y: newValue.y - height / 2) }
+    }
     
-    /// Returns center point
-    public var center: CGPoint { return CGPoint(x: midX, y: midY) }
+    /// Sets and returns center point
+    public var center: CGPoint {
+        get { return CGPoint(x: midX, y: midY) }
+        set { origin = CGPoint(x: newValue.x - width / 2,
+                               y: newValue.y - height / 2) }
+    }
     
     /// Returns center right point
-    public var centerRight: CGPoint { return CGPoint(x: maxX, y: midY) }
+    public var centerRight: CGPoint {
+        get { return CGPoint(x: maxX, y: midY) }
+        set { origin = CGPoint(x: newValue.x - width,
+                               y: newValue.y - height / 2) }
+    }
     
     /// Returns bottom left corner
-    public var bottomLeft: CGPoint { return CGPoint(x: minX, y: maxY) }
+    public var bottomLeft: CGPoint {
+        get { return CGPoint(x: minX, y: maxY) }
+        set { origin = CGPoint(x: newValue.x,
+                               y: newValue.y - height) }
+    }
     
     /// Returns bottom center point
-    public var bottomCenter: CGPoint { return CGPoint(x: midX, y: maxY) }
+    public var bottomCenter: CGPoint {
+        get { return CGPoint(x: midX, y: maxY) }
+        set { origin = CGPoint(x: newValue.x - width / 2,
+                               y: newValue.y - height) }
+    }
     
     /// Returns bottom right corner
-    public var bottomRight: CGPoint { return CGPoint(x: maxX, y: maxY) }
+    public var bottomRight: CGPoint {
+        get { return CGPoint(x: maxX, y: maxY) }
+        set { origin = CGPoint(x: newValue.x - width,
+                               y: newValue.y - height) }
+    }
+}
+
+// Exposed fields without indirection
+extension CGRect {
+    /// Returns origin x
+    public var x: CGFloat {
+        get { return origin.x }
+        set { origin.x = newValue }
+    }
+    
+    /// Returns origin y
+    public var y: CGFloat {
+        get { return origin.y }
+        set { origin.y = newValue }
+    }
+    
+    /// Returns size width
+    public var width: CGFloat {
+        get { return size.width } // normally built-in
+        set { size.width = newValue }
+    }
+    
+    /// Returns size height
+    public var height: CGFloat {
+        get { return size.height } // normally built-in
+        set { size.height = newValue }
+    }
 }
 
 // Rectangle Properties
@@ -52,12 +114,15 @@ extension CGRect {
 extension CGRect {
     
     /// Returns rect translated to origin
-    public var zeroed: CGRect { return CGRect(origin: .zero, size: size) }
+    public var zeroed: CGRect {
+        return CGRect(origin: .zero, size: size)
+    }
     
     /// Constructs a rectangle around a center with the given size
     public static func around(_ center: CGPoint, size: CGSize) -> CGRect {
-        let origin = CGPoint(x: center.x - size.width / 2.0, y: center.y - size.height / 2.0)
-        return CGRect(origin: origin, size: size)
+        var rect = CGRect(origin: .zero, size: size)
+        rect.center = center
+        return rect
     }
     
     /// Returns rect centered around point

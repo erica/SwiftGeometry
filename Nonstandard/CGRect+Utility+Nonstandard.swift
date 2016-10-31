@@ -44,32 +44,3 @@ extension CGRect {
         self.init(x: x, y: y, width: width, height: height)
     }
 }
-
-// Exposed fields without indirection
-extension CGRect {
-    /// Returns origin x
-    public var x: CGFloat {
-        get { return origin.x }
-        set { origin.x = newValue }
-    }
-    
-    /// Returns origin y
-    public var y: CGFloat {
-        get { return origin.y }
-        set { origin.y = newValue }
-    }
-    
-    /// Returns size width
-    public var width: CGFloat {
-        get { return size.width }
-        set { size.width = newValue }
-    }
-    
-    /// Returns size height
-    public var height: CGFloat {
-        get { return size.height }
-        set { size.height = newValue }
-    }
-}
-
-
