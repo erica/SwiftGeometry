@@ -17,6 +17,9 @@ public struct CGAngle: CustomStringConvertible {
     /// The tau constant
     public static let (tau, τ)  = (2 * pi, 2 * pi)
     
+    /// Half pi
+    public static let halfPi = 0.5 * pi
+    
     /// Init
     public init() { _radians = 0 }
     

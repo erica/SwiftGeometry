@@ -27,8 +27,11 @@ extension CGAngle {
 }
 
 extension CGAngle {
+    
     /// Quadrant
-    public enum Quadrant { case I, II, III, IV }
+    ///
+    /// - seeAlso: http://mathforum.org/library/drmath/view/65647.html
+    public enum Quadrant { case I, II, III, IV, axisIandII, axisIIandIII, axisIIIandIV, axisIVandI, undefined }
     
     /// Sign
     public var sign: CGFloat.Sign { return radians.sign }
@@ -51,12 +54,16 @@ extension CGAngle {
     
     /// Returns quadrant
     public var quandrant: Quadrant {
-        let halfPi = CGAngle.pi / 2
         switch standardized.radians {
-        case 0 ..< halfPi: return .I
+        case CGAngle.halfPi: return .axisIandII
+        case CGAngle.pi, -CGAngle.pi: return .axisIIandIII
+        case -CGAngle.halfPi: return .axisIIIandIV
+        case 0: return .axisIVandI
+        case 0 ..< CGAngle.halfPi: return .I
         case 0 ..< CGFloat.infinity: return .II
-        case -CGFloat.infinity ... -halfPi: return .III
-        default: return .IV
+        case -CGFloat.infinity ..< -CGAngle.halfPi: return .III
+        case -CGAngle.halfPi ..< 0: return .IV
+        default: return .undefined
         }
     }
 }
