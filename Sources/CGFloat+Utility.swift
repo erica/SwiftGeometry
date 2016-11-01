@@ -10,8 +10,15 @@ import QuartzCore
 
 // CGFloat utility extensions
 extension CGFloat {
-    /// Return π constant
-    public static var (pi, π) = (CGFloat(Double.pi), CGFloat(Double.pi))
+    /// The pi constant
+    public static let (pi, π) = (CGFloat(Double.pi), CGFloat(Double.pi))
+    
+    /// The tau constant
+    public static let (tau, τ)  = (2 * pi, 2 * pi)
+    
+    /// Fractional pi: 90°, 45°, 30°, 60°, 120°
+    public static let (halfPi, quarterPi, sixthPi, thirdPi, twothirdsPi) =
+        (0.5 * pi, 0.25 * pi, pi / 6, pi / 3, 2 * pi / 3)
     
     /// Return CGFloat as Double
     public var double: Double { return Double(self) }

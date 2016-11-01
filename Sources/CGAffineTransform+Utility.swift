@@ -201,7 +201,7 @@ extension CGAffineTransform {
 // Equality
 //
 // It would be easy to extend this to == vector, == scale, and == angle
-// but I don't see a compelling utility so have omitted them at this time
+// but I don't see a compelling use case. I have omitted them at this time
 //
 extension CGAffineTransform {
     // Basic comparison. This is otherwise available via
