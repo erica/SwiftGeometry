@@ -16,9 +16,9 @@ extension CGFloat {
     /// The tau constant
     public static let (tau, τ)  = (2 * pi, 2 * pi)
     
-    /// Fractional pi: 90°, 45°, 30°, 60°, 120°
-    public static let (halfPi, quarterPi, sixthPi, thirdPi, twothirdsPi) =
-        (0.5 * pi, 0.25 * pi, pi / 6, pi / 3, 2 * pi / 3)
+    /// Fractional pi: 30°, 45°, 60°, 90°, 120°, 135°, 150°
+    public static let (sixthPi, quarterPi, thirdPi, halfPi, twothirdsPi, threeQuartersPi, fiveSixthsPi) =
+        (pi / 6, 0.25 * pi, pi / 3, 0.5 * pi, 2 * pi / 3, 3 * pi / 4, 5 * pi / 6)
     
     /// Return CGFloat as Double
     public var double: Double { return Double(self) }

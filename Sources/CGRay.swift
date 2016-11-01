@@ -8,6 +8,7 @@
 import Foundation
 import QuartzCore
 
+/// You can call me "Ray"
 public struct CGRay {
     /// Ray's origin
     public var origin: CGPoint
