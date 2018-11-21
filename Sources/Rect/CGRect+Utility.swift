@@ -156,14 +156,14 @@ extension CGRect {
     }
     
     /// Fitting into a destination rectangle
-    public func fitting(to destination: CGRect) -> CGRect {
+    public func fitting(_ destination: CGRect) -> CGRect {
         let aspect = destination.fittingAspect(of: size)
         let targetSize = CGSize(width: width * aspect, height: height * aspect)
         return CGRect.around(destination.center, size: targetSize)
     }
     
     /// Filling a destination rectangle
-    public func filling(to destination: CGRect) -> CGRect {
+    public func filling(_ destination: CGRect) -> CGRect {
         let aspect = destination.fillingAspect(of: size)
         let targetSize = CGSize(width: width * aspect, height: height * aspect)
         return CGRect.around(destination.center, size: targetSize)
